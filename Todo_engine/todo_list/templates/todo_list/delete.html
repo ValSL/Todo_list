@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Delete
+{% endblock %}
+
+{% block content %}
+    <div>
+        <p>Are you sure?</p>
+        <form action="{% url 'delete_url' pk=task.pk %}" method="post">
+            {% csrf_token %}
+            <input class="btn btn-danger" type="submit" value="Delete">
+        </form>
+        <a class="btn btn-primary mt-3" href="{% url 'detail_url' pk=task.pk %}">Back</a>
+    </div>
+{% endblock %}

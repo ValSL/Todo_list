@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Create
+{% endblock %}
+
+{% block content %}
+    <h2><b>{{ task.title|title }}</b></h2>
+    <div>
+        <p>{{ task.content }}</p>
+    </div>
+    <p><a class="btn btn-warning" href="{% url 'update_url' pk=task.pk%}">Update</a></p>
+    <p><a class="btn btn-danger" href="{% url 'delete_url' pk=task.pk%}">Delete</a></p>
+
+{% endblock %}

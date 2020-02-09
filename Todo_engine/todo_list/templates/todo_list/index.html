@@ -8,9 +8,7 @@
     <ul class="list-group">
         {% for task in tasks %}
             <li class="list-group-item">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1"></label>
-                {{ task.title }}
+                <a href="{% url 'detail_url' pk=task.id %}">{{ task.title|title }}</a>
             </li>
         {% endfor %}
     </ul>
