@@ -11,14 +11,9 @@ def index(request):
 
 class TaskCreate(CreateView):
     model = Task
-    fields = ['title', 'content']
-    success_url = 'todo/index'
+    success_url = '/todo'
     template_name = 'todo_list/create.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['form'] = TodoForm()
-        return context
+    form_class = TodoForm
 
 
 class TaskDetail(DetailView):
