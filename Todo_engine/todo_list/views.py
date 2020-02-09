@@ -9,6 +9,13 @@ def index(request):
     return render(request, 'todo_list/index.html', context={'tasks': tasks})
 
 
+def check(request, pk):
+    current_task = Task.objects.get(id=pk)
+    current_task.check = not current_task.check
+    current_task.save()
+    return redirect(reverse('index_url'))
+
+
 class TaskCreate(CreateView):
     model = Task
     success_url = '/todo'
