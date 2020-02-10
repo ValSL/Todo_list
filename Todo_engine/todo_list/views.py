@@ -16,6 +16,15 @@ def check(request, pk):
     return redirect(reverse('index_url'))
 
 
+def change_priority(request, pk):
+    if request.method == 'POST':
+        current_task = Task.objects.get(id=pk)
+        form = TodoForm(request.POST, instance=current_task)
+        current_task.priority = form['priority'].data
+        current_task.save()
+    return redirect(reverse('detail_url', kwargs={'pk': current_task.pk}))
+
+
 class TaskCreate(CreateView):
     model = Task
     success_url = '/todo'
@@ -26,6 +35,11 @@ class TaskCreate(CreateView):
 class TaskDetail(DetailView):
     template_name = 'todo_list/detail.html'
     model = Task
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = TodoForm()
+        return context
 
 
 class TaskUpdate(UpdateView):

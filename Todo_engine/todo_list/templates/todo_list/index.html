@@ -8,15 +8,19 @@
     <ul class="list-group">
         {% for task in tasks %}
             <li class="list-group-item">
-            	<form action="{% url 'check_url' pk=task.pk %}" method="post">
+                <form action="{% url 'check_url' pk=task.pk %}" method="post">
                     {% csrf_token %}
-            		{% if task.check == False %}
-            			<input type="submit" value="In process" class="btn btn-danger">
-            		{% else %}
-            			<input type="submit" value="Check!!!" class="btn btn-success">
-            		{% endif %}
-            	</form>
-                <a href="{% url 'detail_url' pk=task.id %}">{{ task.title|title }}</a>
+                    {% if task.check == False %}
+                        <input type="submit" value="In process" class="btn btn-danger">
+                    {% else %}
+                        <input type="submit" value="Check!!!" class="btn btn-success">
+                    {% endif %}
+                </form>
+                <a style="margin-left: 30%; font-size: 20px; color: {{ task.priority }}" href="{% url 'detail_url' pk=task.id %}"><b>{{ task.title|title }}</b></a>
+                <form action="#" method="post">
+                    <a style="" href="">Up</a>
+                    <a style="margin-left: 20px" href="">Down</a>
+                </form>
             </li>
         {% endfor %}
     </ul>
