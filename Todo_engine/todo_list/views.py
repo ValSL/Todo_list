@@ -22,7 +22,7 @@ def change_priority(request, pk):
         form = TodoForm(request.POST, instance=current_task)
         current_task.priority = form['priority'].data
         current_task.save()
-    return redirect(reverse('detail_url', kwargs={'pk': current_task.pk}))
+        return redirect(reverse('detail_url', kwargs={'pk': current_task.pk}))
 
 
 class TaskCreate(CreateView):
