@@ -5,9 +5,9 @@ from .forms import TodoForm
 
 
 def index(request):
-    tasks = Task.objects.all()
+    tasks = Task.objects.order_by('position')
     return render(request, 'todo_list/index.html', context={'tasks': tasks})
-
+ 
 
 def ordered_index(request, color):
     ordered_tasks = Task.objects.filter(priority=color)
