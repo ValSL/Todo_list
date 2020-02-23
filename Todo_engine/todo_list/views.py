@@ -9,6 +9,12 @@ def index(request):
     return render(request, 'todo_list/index.html', context={'tasks': tasks})
 
 
+def ordered_index(request, color):
+    ordered_tasks = Task.objects.filter(priority=color)
+    other_tasks = Task.objects.exclude(priority=color)
+    return render(request, 'todo_list/ordered_index.html', context={'tasks': other_tasks, 'ordered_tasks': ordered_tasks})
+
+
 def check(request, pk):
     current_task = Task.objects.get(id=pk)
     current_task.check = not current_task.check
@@ -27,7 +33,7 @@ def change_priority(request, pk):
 
 class TaskCreate(CreateView):
     model = Task
-    success_url = '/todo'
+    success_url = '/'
     template_name = 'todo_list/create.html'
     form_class = TodoForm
 
@@ -45,11 +51,11 @@ class TaskDetail(DetailView):
 class TaskUpdate(UpdateView):
     template_name = 'todo_list/update.html'
     model = Task
-    success_url = '/todo'
+    success_url = '/'
     form_class = TodoForm
 
 
 class TaskDelete(DeleteView):
     template_name = 'todo_list/delete.html'
     model = Task
-    success_url = '/todo'
+    success_url = '/'

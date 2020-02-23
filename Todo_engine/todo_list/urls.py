@@ -1,8 +1,9 @@
 from django.urls import path
-from .views import index, check, change_priority, TaskCreate, TaskDetail, TaskUpdate, TaskDelete
+from .views import index, ordered_index, check, change_priority, TaskCreate, TaskDetail, TaskUpdate, TaskDelete
 
 urlpatterns = [
     path('', index, name='index_url'),
+    path('ordered/<str:color>', ordered_index, name='ordered_index_url'),
     path('check/<int:pk>', check, name='check_url'),
     path('prior/<int:pk>', change_priority, name='prior_url'),
     # path('pos/<int:pk>', change_position, name='change_position_url'),
