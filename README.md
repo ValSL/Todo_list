@@ -34,5 +34,5 @@ python manage.py migrate
 python manage.py runserver
 ```
 
-##Features
+## Features
 You can sort entries by color, by clicking on the corresponding labels in the upper center of the site header.
